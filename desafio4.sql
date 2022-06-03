@@ -1,7 +1,6 @@
-select c.nome AS usuario, u.data_reproducao AS condicao_usuario
-FROM SpotifyClone.usuarios AS c
-INNER JOIN SpotifyClone.reproducoes AS u
-ON c.cancoes_id = u.cancoes_id
-group by cancao
-order by reproducoes DESC , cancao ASC
-LIMIT 2;
+SELECT A.usuario AS usuario, IF(MAX(year(R.data_reproducao ))=2021 ,'Usuário ativo','Usuário inativo' ) AS condicao_usuario
+ From SpotifyClone.usuarios AS A 
+ INNER JOIN SpotifyClone.reproducoes AS R
+ ON A.usuario_id = R.usuario_id
+ group by usuario
+ order by usuario ASC;
